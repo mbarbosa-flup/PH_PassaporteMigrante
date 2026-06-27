@@ -3,169 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Passaporte do Migrante — Separadores</title>
+<title>Passaporte do Historiador — Migrações e Representações Sociais</title>
 <style>
-:root{
-  --navy:#4b1020; --navy2:#6d1830; --gold:#c8a96b; --gold2:#f4e1b9;
-  --paper:#fff7e8; --paper2:#f4e4c8; --ink:#261b12; --muted:#6b5a45;
-  --line:#d2b98f; --green:#166534; --red:#991b1b; --shadow:0 28px 80px rgba(0,0,0,.35);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0; min-height:100vh; font-family:Arial, Helvetica, sans-serif; color:#fff;
-  background:
-    radial-gradient(circle at 15% 12%,rgba(255,255,255,.10),transparent 22%),
-    radial-gradient(circle at 82% 18%,rgba(214,163,84,.18),transparent 24%),
-    linear-gradient(180deg,#2a0812,#4b1020 55%,#22060f);
-}
-button,input,textarea,select{font:inherit}
-header{text-align:center;padding:24px 16px 6px}
-header h1{margin:0;font-size:clamp(1.6rem,3.2vw,2.7rem)}
-header p{margin:8px auto 0;max-width:920px;color:#dbe7f6}
-.stage{max-width:1220px;margin:0 auto;padding:18px}
-.closed-cover{
-  width:min(760px,94vw); min-height:520px; margin:18px auto 28px; border-radius:34px;
-  background:
-    radial-gradient(circle at 50% 12%,rgba(255,255,255,.10),transparent 18%),
-    repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 8px,transparent 8px 18px),
-    linear-gradient(145deg,#3b0b18,#6d1830 58%,#2b0712);
-  border:10px solid #0d2c50;
-  box-shadow:var(--shadow), inset 0 0 0 4px rgba(214,163,84,.75), inset 0 0 0 16px rgba(255,255,255,.04);
-  display:grid; place-items:center; text-align:center; padding:34px; position:relative; overflow:hidden;
-}
-.closed-cover::before{
-  content:""; position:absolute; inset:24px; border:3px double rgba(243,212,155,.85); border-radius:25px; pointer-events:none;
-}
-.cover-emblem{
-  width:145px;height:145px;border:6px double var(--gold2);border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;
-  font-size:3.5rem; background:rgba(255,255,255,.06); box-shadow:0 0 40px rgba(243,212,155,.16);
-}
-.closed-cover h2{font-size:clamp(2rem,5vw,4rem);letter-spacing:.08em;margin:0;color:#fff7dc}
-.closed-cover h3{font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.2em;color:var(--gold2);margin:10px 0 18px;text-transform:uppercase}
-.closed-cover p{max-width:620px;margin:8px auto;color:#e9f1ff;line-height:1.55}
-.open-btn{
-  margin-top:24px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold),#f8d99a);
-  color:#201205;padding:14px 24px;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(0,0,0,.25)
-}
-.passport-app{display:none}
-.passport-app.show{display:block}
-.book{
-  background:linear-gradient(90deg,#e6cfaa 0 49%,#c4a578 49% 51%,#fff4dd 51% 100%);
-  border:8px solid var(--gold); border-radius:28px; box-shadow:var(--shadow); overflow:hidden; color:var(--ink);
-}
-.book-top{
-  background:linear-gradient(135deg,#3b0b18,#6d1830); color:#fff; padding:18px 22px;
-  display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center;
-}
-.book-top h2{margin:0;font-size:1.35rem}
-.book-top small{color:#dbe7f6}
-.progress{height:14px;background:#334155;border-radius:999px;overflow:hidden;margin-top:8px}
-.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),#86efac);transition:.45s}
-.counter{font-weight:900;color:var(--gold2);white-space:nowrap}
-.tabs{
-  display:flex; gap:6px; overflow-x:auto; padding:10px 12px; background:#ead8b8; border-bottom:2px solid var(--line);
-}
-.tab{
-  border:0;border-radius:14px 14px 0 0;padding:10px 12px;background:#f8ecd6;color:#5b3518;font-weight:900;cursor:pointer;
-  min-width:max-content; border:1px solid var(--line); border-bottom:0;
-}
-.tab.active{background:#fff7e8;color:#111827;transform:translateY(1px)}
-.tab.locked{opacity:.45;cursor:not-allowed}
-.pages{display:grid;grid-template-columns:1fr 1fr;min-height:650px}
-.left-page,.right-page{padding:24px;position:relative}
-.left-page{border-right:3px solid #c4a578;background:linear-gradient(90deg,#f3e0bd,#fff4dc)}
-.right-page{background:linear-gradient(90deg,#fff4dc,#fff8ea)}
-.page-screen{display:none}
-.page-screen.active{display:grid;grid-template-columns:1fr 1fr}
-.page-title{margin:0 0 10px;color:#5b3518;font-size:1.45rem}
-.page-subtitle{margin:0 0 16px;color:var(--muted)}
-.stamp{
-  border:4px double #8b5a2b;border-radius:50%;width:120px;height:82px;display:grid;place-items:center;text-align:center;
-  font-weight:900;color:#8b5a2b;transform:rotate(-7deg);background:rgba(255,243,218,.75);margin:18px 0;
-}
-.stamp.done{color:var(--green);border-color:var(--green)}
-.field-grid{display:grid;gap:12px}
-label{font-weight:900;color:var(--ink)}
-.prompt{font-size:.86rem;color:var(--muted);font-weight:400;margin:4px 0 0}
-input,textarea,select{
-  width:100%;margin-top:6px;border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:#fffdf8;color:var(--ink)
-}
-textarea{min-height:104px;resize:vertical}
-input:focus,textarea:focus,select:focus{outline:3px solid rgba(214,163,84,.28);border-color:var(--gold)}
-.note{background:#f9ecef;color:#6d1830;border-left:5px solid #6d1830;border-radius:14px;padding:12px;margin:12px 0}
-.warning{background:#fdf1f3;color:#7a2035;border-left:5px solid #a12845;border-radius:14px;padding:12px;margin:12px 0}
-.lock-warning{background:#fee2e2;color:#7f1d1d;border-left:5px solid var(--red);border-radius:14px;padding:12px;margin:12px 0}
-.badge-big{font-size:5rem;text-align:center;margin:12px 0}
-.nav-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.btn{
-  border:0;border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer;background:#7a431d;color:#fff
-}
-.btn.secondary{background:#334155}.btn.gold{background:linear-gradient(135deg,var(--gold),#f8d99a);color:#201205}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.table-wrap{overflow:auto;border:2px solid var(--line);border-radius:16px}
-table{width:100%;border-collapse:collapse;min-width:720px;background:#fffaf1}
-th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
-th{background:#f0dcc0;color:#5d3518}
-.teacher-panel{display:none;background:#fdf7f8;color:#2b0712;padding:20px;border-top:5px solid #6d1830}
-.teacher-panel.show{display:block}
-.teacher-panel h3{color:#111827}
-.result{display:none;background:#fffaf1;border:2px solid var(--line);border-radius:18px;padding:16px;margin-top:14px}
-.result.show{display:block}
-@media(max-width:850px){
-  .page-screen.active{grid-template-columns:1fr}
-  .pages{grid-template-columns:1fr}.left-page{border-right:0;border-bottom:3px solid #c4a578}
-  .book-top{grid-template-columns:1fr}.counter{white-space:normal}.closed-cover{min-height:480px}
-}
-@media print{
-  body{background:#fff;color:#000}header,.closed-cover,.tabs,.nav-actions,.book-top{display:none!important}
-  .passport-app,.passport-app.show{display:block}.book{box-shadow:none;border:2px solid #999;border-radius:0}
-  .pages{display:block}.left-page,.right-page{border:0;padding:12px}.page-screen{display:block}.teacher-panel{display:block}
-}
-
-.closed-cover h2{
-  text-shadow:0 2px 0 rgba(0,0,0,.35),0 0 18px rgba(255,230,180,.12);
-}
-.closed-cover{
-  position:relative;
-}
-.closed-cover::after{
-  content:"REPÚBLICA PORTUGUESA";
-  position:absolute;
-  top:26px;
-  left:0;
-  right:0;
-  text-align:center;
-  color:rgba(255,240,210,.85);
-  font-size:.95rem;
-  letter-spacing:.35em;
-  font-weight:700;
-}
-
-
-.save-status{
-  display:inline-block;
-  margin-top:10px;
-  color:#f4e1b9;
-  font-weight:800;
-  font-size:.92rem;
-}
-.file-input{display:none}
+:root{--wine:#4b1020;--wine2:#6d1830;--gold:#c8a96b;--gold2:#f4e1b9;--paper:#fff7e8;--paper2:#f4e4c8;--ink:#261b12;--muted:#6b5a45;--line:#d2b98f;--green:#166534;--blue:#123c69;--shadow:0 28px 80px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#fff;background:radial-gradient(circle at 15% 12%,rgba(255,255,255,.10),transparent 22%),radial-gradient(circle at 82% 18%,rgba(214,163,84,.18),transparent 24%),linear-gradient(180deg,#2a0812,#4b1020 55%,#22060f)}button,input,textarea,select{font:inherit}header{text-align:center;padding:24px 16px 6px}header h1{margin:0;font-size:clamp(1.6rem,3.2vw,2.7rem)}header p{margin:8px auto 0;max-width:980px;color:#dbe7f6}.stage{max-width:1240px;margin:0 auto;padding:18px}.closed-cover{width:min(790px,94vw);min-height:540px;margin:18px auto 28px;border-radius:34px;background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.10),transparent 18%),repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 8px,transparent 8px 18px),linear-gradient(145deg,#3b0b18,#6d1830 58%,#2b0712);border:10px solid #0d2c50;box-shadow:var(--shadow),inset 0 0 0 4px rgba(214,163,84,.75),inset 0 0 0 16px rgba(255,255,255,.04);display:grid;place-items:center;text-align:center;padding:34px;position:relative;overflow:hidden}.closed-cover:before{content:"";position:absolute;inset:24px;border:3px double rgba(243,212,155,.85);border-radius:25px;pointer-events:none}.closed-cover:after{content:"LABORATÓRIO DE HISTÓRIA";position:absolute;top:26px;left:0;right:0;text-align:center;color:rgba(255,240,210,.85);font-size:.95rem;letter-spacing:.35em;font-weight:700}.cover-emblem{width:145px;height:145px;border:6px double var(--gold2);border-radius:50%;display:grid;place-items:center;margin:0 auto 22px;font-size:3.5rem;background:rgba(255,255,255,.06);box-shadow:0 0 40px rgba(243,212,155,.16)}.closed-cover h2{font-size:clamp(2rem,5vw,3.8rem);letter-spacing:.06em;margin:0;color:#fff7dc;text-shadow:0 2px 0 rgba(0,0,0,.35),0 0 18px rgba(255,230,180,.12)}.closed-cover h3{font-size:clamp(1rem,2vw,1.35rem);letter-spacing:.12em;color:var(--gold2);margin:10px 0 18px;text-transform:uppercase}.closed-cover p{max-width:650px;margin:8px auto;color:#e9f1ff;line-height:1.55}.open-btn{margin-top:24px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold),#f8d99a);color:#201205;padding:14px 24px;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(0,0,0,.25)}.passport-app{display:none}.passport-app.show{display:block}.book{background:linear-gradient(90deg,#e6cfaa 0 49%,#c4a578 49% 51%,#fff4dd 51% 100%);border:8px solid var(--gold);border-radius:28px;box-shadow:var(--shadow);overflow:hidden;color:var(--ink)}.book-top{background:linear-gradient(135deg,#3b0b18,#6d1830);color:#fff;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.book-top h2{margin:0;font-size:1.35rem}.book-top small{color:#dbe7f6}.progress{height:14px;background:#334155;border-radius:999px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),#86efac);transition:.45s}.counter{font-weight:900;color:var(--gold2);white-space:nowrap}.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;background:#ead8b8;border-bottom:2px solid var(--line)}.tab{border:0;border-radius:14px 14px 0 0;padding:10px 12px;background:#f8ecd6;color:#5b3518;font-weight:900;cursor:pointer;min-width:max-content;border:1px solid var(--line);border-bottom:0}.tab.active{background:#fff7e8;color:#111827;transform:translateY(1px)}.pages{min-height:690px}.page-screen{display:none;grid-template-columns:1fr 1fr}.page-screen.active{display:grid}.left-page,.right-page{padding:24px;position:relative}.left-page{border-right:3px solid #c4a578;background:linear-gradient(90deg,#f3e0bd,#fff4dc)}.right-page{background:linear-gradient(90deg,#fff4dc,#fff8ea)}.page-title{margin:0 0 10px;color:#5b3518;font-size:1.45rem}.page-subtitle{margin:0 0 16px;color:var(--muted)}.stamp{border:4px double #8b5a2b;border-radius:50%;width:140px;height:86px;display:grid;place-items:center;text-align:center;font-weight:900;color:#8b5a2b;transform:rotate(-7deg);background:rgba(255,243,218,.75);margin:18px 0}.stamp.done{color:var(--green);border-color:var(--green)}.field-grid{display:grid;gap:12px}label{font-weight:900;color:var(--ink)}.prompt{font-size:.86rem;color:var(--muted);font-weight:400;margin:4px 0 0}input,textarea,select{width:100%;margin-top:6px;border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:#fffdf8;color:var(--ink)}textarea{min-height:104px;resize:vertical}input:focus,textarea:focus,select:focus{outline:3px solid rgba(214,163,84,.28);border-color:var(--gold)}.note{background:#f9ecef;color:#6d1830;border-left:5px solid #6d1830;border-radius:14px;padding:12px;margin:12px 0}.notice{background:#eff6ff;color:#123c69;border-left:5px solid #1d4ed8;border-radius:14px;padding:12px;margin:12px 0}.warning{background:#fdf1f3;color:#7a2035;border-left:5px solid #a12845;border-radius:14px;padding:12px;margin:12px 0}.badge-big{font-size:5rem;text-align:center;margin:12px 0}.nav-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:900;cursor:pointer;background:#7a431d;color:#fff}.btn.secondary{background:#334155}.btn.gold{background:linear-gradient(135deg,var(--gold),#f8d99a);color:#201205}.btn.green{background:var(--green)}.table-wrap{overflow:auto;border:2px solid var(--line);border-radius:16px;margin:8px 0 12px}table{width:100%;border-collapse:collapse;min-width:720px;background:#fffaf1}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#f0dcc0;color:#5d3518}td textarea{min-height:70px}.checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:12px 0}.checkItem{background:#fffaf1;border:1px solid var(--line);border-radius:12px;padding:10px;color:var(--ink);font-weight:700}.checkItem input{width:auto;transform:scale(1.1);margin:0 8px 0 0}.mirrorVisual{width:100%;max-width:760px;display:block;margin:10px auto 18px;border-radius:18px;border:1px solid var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.18)}.result{display:none;background:#fffaf1;border:2px solid var(--line);border-radius:18px;padding:16px;margin-top:14px}.result.show{display:block}.save-status{display:inline-block;margin-top:10px;color:#6d1830;font-weight:800;font-size:.92rem}.file-input{display:none}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini{font-size:.93rem;color:var(--muted);line-height:1.45}
+@media(max-width:850px){.page-screen.active{grid-template-columns:1fr}.left-page{border-right:0;border-bottom:3px solid #c4a578}.book-top{grid-template-columns:1fr}.counter{white-space:normal}.closed-cover{min-height:480px}.two-col{grid-template-columns:1fr}}
+@media print{body{background:#fff;color:#000}header,.closed-cover,.tabs,.nav-actions,.book-top{display:none!important}.passport-app,.passport-app.show{display:block}.book{box-shadow:none;border:2px solid #999;border-radius:0}.pages{display:block}.left-page,.right-page{border:0;padding:12px}.page-screen{display:block;page-break-after:always}}
 </style>
 </head>
 <body>
 <header>
-  <h1>Passaporte do Migrante</h1>
-  <p>Registo progressivo de aprendizagem — representações sociais dos migrantes ao longo do tempo.</p>
+  <h1>Passaporte do Historiador</h1>
+  <p>Registo de evidências e aprendizagens — laboratório de investigação sobre migrações e representações sociais.</p>
 </header>
 
 <section class="closed-cover" id="cover">
   <div>
     <div class="cover-emblem">🛂</div>
-    <h2>PASSAPORTE</h2>
-    <h3>do Migrante</h3>
-    <p>Abre o teu passaporte e regista, etapa a etapa, o que vais descobrindo nas fontes históricas.</p>
-    <p><strong>Objetivo:</strong> Identificar representações dos migrantes, explicar atitudes das sociedades de acolhimento e comparar diferentes contextos históricos para compreender continuidades e mudanças nas formas de representar e percecionar o “Outro”.</p>
+    <h2>PASSAPORTE DO HISTORIADOR</h2>
+    <h3>Migrações e representações sociais</h3>
+    <p>Cada página deste passaporte corresponde a uma etapa da investigação histórica. Ao longo dos três laboratórios irás selecionar evidências, comparar contextos e construir interpretações fundamentadas.</p>
+    <p><strong>Missão:</strong> registar apenas o essencial da investigação para apoiar a síntese final e a reflexão crítica.</p>
     <button class="open-btn" id="abrirBtn" type="button">Abrir passaporte</button>
   </div>
 </section>
@@ -174,449 +32,60 @@ th{background:#f0dcc0;color:#5d3518}
   <section class="book">
     <div class="book-top">
       <div>
-        <h2>Passaporte do Migrante</h2>
-        <small>Só desbloqueias o destino seguinte quando completas o registo anterior.</small>
+        <h2>Passaporte do Historiador</h2>
+        <small>Complemento do Laboratório Digital: regista evidências, sínteses e reflexão final.</small>
         <div class="progress"><span id="barraTopo"></span></div>
       </div>
-      <div class="counter" id="contadorDestinos">0/6 destinos concluídos</div>
+      <div class="counter" id="contadorEtapas">0/6 etapas essenciais concluídas</div>
     </div>
-
     <nav class="tabs" id="tabs"></nav>
-
     <section class="pages" id="pages"></section>
-
-    <div class="teacher-panel" id="areaProfessor">
-      <h2>Área do professor — grelha de avaliação</h2>
-      <p>Esta área é apenas para avaliação docente.</p>
-
-      <h3>A. Processo de aprendizagem — 8 valores</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Critério</th><th>Nível 1</th><th>Nível 2</th><th>Nível 3</th><th>Nível 4</th><th>Cotação</th></tr></thead>
-          <tbody>
-            <tr><th>Participação e progressão</th><td>Registos incompletos.</td><td>Completa parcialmente.</td><td>Completa os registos essenciais.</td><td>Registos completos e progressivos.</td><td>/2</td></tr>
-            <tr><th>Interpretação de fontes</th><td>Identifica poucos elementos.</td><td>Identifica informação básica.</td><td>Interpreta informação relevante.</td><td>Mobiliza evidências de forma fundamentada.</td><td>/3</td></tr>
-            <tr><th>Conceitos históricos</th><td>Uso incorreto.</td><td>Uso simples.</td><td>Uso correto.</td><td>Uso rigoroso e articulado.</td><td>/3</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3>B. Produto final — 12 valores</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Critério</th><th>Nível 1</th><th>Nível 2</th><th>Nível 3</th><th>Nível 4</th><th>Cotação</th></tr></thead>
-          <tbody>
-            <tr><th>Representações sociais</th><td>Vagas.</td><td>Identifica algumas.</td><td>Identifica diferentes representações.</td><td>Analisa criticamente representações complexas.</td><td>/3</td></tr>
-            <tr><th>Explicação histórica</th><td>Pouco desenvolvida.</td><td>Simples.</td><td>Relaciona fatores históricos.</td><td>Explicação articulada com evidências.</td><td>/3</td></tr>
-            <tr><th>Comparação histórica</th><td>Poucas relações.</td><td>Algumas semelhanças/diferenças.</td><td>Compara contextos.</td><td>Reconhece continuidades e mudanças complexas.</td><td>/3</td></tr>
-            <tr><th>Reflexão crítica</th><td>Superficial.</td><td>Relação simples.</td><td>Relaciona passado e presente.</td><td>Pensamento crítico e empatia histórica.</td><td>/3</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>Observações do professor</h3>
-      <textarea placeholder="Feedback qualitativo..." style="min-height:120px"></textarea>
-    </div>
   </section>
 </main>
-
 <script>
-const destinos = [
-  {icon:'𓂀', tab:'Início', title:'Identificação e ideias iniciais', type:'intro'},
-  {
-    icon:'𓂀', tab:'Egipto', title:'Destino 1 — Egipto: Hicsos e medo do Outro', context:'Egipto Antigo — Hicsos',
-    missao:'Interpreta as fontes para perceber como se construíram representações sobre populações estrangeiras no Egipto Antigo.',
-    f1:'Mobiliza elementos observados nas fontes para fundamentar a tua resposta.',
-    f2:'Identifica palavras, expressões ou situações que sustentam a tua interpretação.',
-    f3:'Relaciona a fonte com o contexto político, social ou cultural estudado.',
-    f5:'Procura semelhanças ou diferenças com outros casos já analisados.'
-  },
-  {
-    icon:'🏛️', tab:'Grécia', title:'Destino 2 — Grécia: Metecos em Atenas', context:'Grécia Antiga — Metecos',
-    missao:'Interpreta as fontes para compreender a condição dos estrangeiros residentes na democracia ateniense.',
-    f1:'O que te permite concluir esta fonte sobre a condição dos metecos em Atenas?',
-    f2:'Como eram simultaneamente integrados e excluídos da sociedade ateniense?',
-    f3:'O que poderá explicar a existência destas limitações numa democracia?',
-    f5:'Que ligação consegues estabelecer entre este caso e outros já estudados?'
-  },
-  {
-    icon:'🐉', tab:'China', title:'Destino 3 — China: migração, exploração e exclusão', context:'China — século XIX',
-    missao:'Interpreta as fontes para compreender experiências migratórias chinesas e formas de aceitação, exploração ou rejeição.',
-    f1:'O que revelam as fontes sobre a experiência migratória chinesa no século XIX?',
-    f2:'Que representações dos migrantes chineses são construídas nas fontes analisadas?',
-    f3:'O que poderá explicar atitudes de aceitação, exploração ou rejeição dos migrantes chineses?',
-    f5:'Que ligação consegues estabelecer entre este caso e outros já estudados?'
-  },
-  {
-    icon:'🇧🇷', tab:'Brasil', title:'Destino 4 — Brasil: imigração, trabalho e identidade', context:'Brasil — séculos XIX-XX',
-    missao:'Interpreta as fontes para compreender a relação entre imigração, trabalho, promessa migratória e identidade cultural no Brasil.',
-    f1:'O que revelam as fontes sobre a experiência dos imigrantes no Brasil?',
-    f2:'Como são representados os diferentes grupos migrantes nas fontes analisadas?',
-    f3:'Que tensões existiam entre trabalho, integração e identidade cultural?',
-    f5:'Que ligação consegues estabelecer entre este caso e outros já estudados?'
-  },
-  {
-    icon:'🗽', tab:'EUA', title:'Destino 5 — Estados Unidos: Grande Migração afro-americana', context:'Estados Unidos — século XX',
-    missao:'Interpreta as fontes para compreender a relação entre mobilidade, segregação, desigualdade e afirmação identitária.',
-    f1:'O que revelam as fontes sobre a experiência da população afro-americana durante a Grande Migração?',
-    f2:'Que formas de segregação ou discriminação identificas nas fontes?',
-    f3:'O que poderá explicar a persistência destas desigualdades?',
-    f5:'Que ligação consegues estabelecer entre este caso e outros já estudados?'
-  },
-  {
-    icon:'🇵🇹', tab:'Portugal', title:'Destino 6 — Portugal: emigração, imigração e atualidade', context:'Portugal — emigração portuguesa e imigração contemporânea',
-    missao:'Interpreta as fontes para relacionar a experiência emigratória portuguesa, a imigração contemporânea e a situação-problema.',
-    f1:'O que revelam as fontes sobre a experiência migratória portuguesa e sobre a imigração em Portugal?',
-    f2:'Como são representados os migrantes nas diferentes fontes analisadas?',
-    f3:'Que fatores ajudam a explicar atitudes de integração, exclusão ou discriminação?',
-    f5:'Que continuidades e mudanças identificas relativamente aos casos anteriormente estudados?'
-  },
-  {icon:'❓', tab:'Questões finais', title:'Questões orientadoras finais', type:'final'},
-  {icon:'✉️', tab:'Enviar', title:'Enviar relatório ao professor', type:'send'}
+const tabs=[
+  {icon:'🧭',tab:'Início',type:'inicio'},
+  {icon:'🔍',tab:'Lab. 1',type:'lab1'},
+  {icon:'🪞',tab:'Lab. 2',type:'lab2'},
+  {icon:'🌐',tab:'Lab. 3',type:'lab3'},
+  {icon:'🪞',tab:'Espelho final',type:'espelho'},
+  {icon:'📝',tab:'Síntese final',type:'sintese'},
+  {icon:'📊',tab:'Autoavaliação',type:'auto'},
+  {icon:'📄',tab:'Relatório',type:'relatorio'}
 ];
-
-let current = 0;
-
-function abrirPassaporte(){
-  const cover = document.getElementById('cover');
-  const app = document.getElementById('app');
-  if(cover) cover.style.display='none';
-  if(app) app.classList.add('show');
-  go(0);
+let current=0;
+const STORAGE_KEY='passaporte_historiador_v1';
+function pageHTML(d,i){
+if(d.type==='inicio')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Antes da investigação</h2><p class="page-subtitle">Identificação e ideias iniciais.</p><div class="stamp">PASSAPORTE<br>ABERTO</div><div class="note"><strong>Problemática:</strong><br>Porque é que as sociedades que sempre dependeram das migrações continuam a representar determinados grupos de migrantes como “outros” ou ameaçadores?</div><div class="notice"><strong>Este passaporte não substitui o Laboratório Digital.</strong> Serve para registar conclusões essenciais, preparar O Espelho e apoiar a reflexão final.</div></section><section class="right-page"><div class="field-grid"><label>Nome<input id="nome" oninput="atualizarProgresso()"></label><label>Turma<input id="turma" oninput="atualizarProgresso()"></label><label>Email do professor/a<input id="emailProfessor" type="email"></label><label>Data<input id="dataEntrega" type="date"></label><label>Palavras que associas a “migrante”<div class="prompt">Escolhe ou acrescenta palavras próprias.</div><input id="previasPalavras" oninput="atualizarProgresso()"></label><label>Porque migram as pessoas?<textarea id="previasRazoes" oninput="atualizarProgresso()"></textarea></label><label>Como achas que os migrantes costumam ser vistos?<textarea id="previasRepresentacoes" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn gold" onclick="go(1)">Começar investigação</button><button class="btn secondary" onclick="importarDoLaboratorio()">Importar do Laboratório Digital</button></div></div></section></div>`;
+if(d.type==='lab1')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Registo 1 — Laboratório 1</h2><p class="page-subtitle">Representações dos migrantes em diferentes sociedades históricas.</p><div class="badge-big">🔍</div><div class="note"><strong>Questão orientadora:</strong><br>Que representações dos migrantes são construídas em diferentes sociedades históricas?</div><div class="stamp" id="stampLab1">INVESTIGAÇÃO<br>EM CURSO</div><p class="mini">Regista aqui apenas o essencial. A análise detalhada das fontes é feita no Laboratório Digital.</p></section><section class="right-page"><div class="field-grid"><label>O meu grupo investigou<select id="lab1Caso" onchange="atualizarProgresso()"><option value="">Seleciona</option><option>Egito — Hicsos</option><option>Grécia — Metecos</option><option>China — migração chinesa</option><option>Brasil — imigração, trabalho e identidade</option><option>Estados Unidos — Grande Migração</option></select></label><label>Representação identificada<textarea id="lab1Representacao" oninput="atualizarProgresso()"></textarea></label><label>Evidência histórica que melhor sustenta essa interpretação<textarea id="lab1Evidencia" oninput="atualizarProgresso()"></textarea></label><label>O que aprendemos com este caso?<textarea id="lab1Aprendi" oninput="atualizarProgresso()"></textarea></label><h3>Depois da partilha com os restantes grupos</h3><div class="table-wrap"><table><tr><th>Estudo de caso</th><th>Representação identificada</th></tr>${['Egito','Grécia','China','Brasil','Estados Unidos'].map((c,idx)=>`<tr><td>${c}</td><td><textarea id="lab1Tabela${idx}" oninput="atualizarProgresso()"></textarea></td></tr>`).join('')}</table></div><div class="nav-actions"><button class="btn secondary" onclick="go(0)">Voltar</button><button class="btn gold" onclick="go(2)">Próxima etapa</button></div></div></section></div>`;
+if(d.type==='lab2')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Registo 2 — Laboratório 2</h2><p class="page-subtitle">Atitudes das sociedades de acolhimento face aos emigrantes portugueses.</p><div class="badge-big">🪞</div><div class="note"><strong>Questão orientadora:</strong><br>Como se explicam as atitudes das sociedades de acolhimento face aos migrantes?</div><div class="stamp" id="stampLab2">INVESTIGAÇÃO<br>EM CURSO</div><p class="mini">Usa o caso português como espelho para reler os estudos de caso anteriores.</p></section><section class="right-page"><div class="field-grid"><h3>Atitudes das sociedades de acolhimento</h3><div class="table-wrap"><table><tr><th>Contexto</th><th>Atitude predominante</th><th>Evidência</th></tr>${['França','Canadá / EUA','Comunidades portuguesas na diáspora'].map((c,idx)=>`<tr><td>${c}</td><td><textarea id="lab2Atitude${idx}" oninput="atualizarProgresso()"></textarea></td><td><textarea id="lab2Evidencia${idx}" oninput="atualizarProgresso()"></textarea></td></tr>`).join('')}</table></div><label>O que mudou relativamente aos casos históricos?<textarea id="lab2Mudou" oninput="atualizarProgresso()"></textarea></label><label>O que se manteve?<textarea id="lab2Manteve" oninput="atualizarProgresso()"></textarea></label><label>Que fatores ajudam a explicar estas atitudes?<textarea id="lab2Fatores" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn secondary" onclick="go(1)">Voltar</button><button class="btn gold" onclick="go(3)">Próxima etapa</button></div></div></section></div>`;
+if(d.type==='lab3')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Registo 3 — Laboratório 3</h2><p class="page-subtitle">Portugal contemporâneo, continuidades e mudanças.</p><div class="badge-big">🌐</div><div class="note"><strong>Questão orientadora:</strong><br>Em que medida se repetem as representações dos migrantes em diferentes contextos históricos?</div><div class="stamp" id="stampLab3">INVESTIGAÇÃO<br>EM CURSO</div></section><section class="right-page"><div class="field-grid"><h3>Comparação final</h3><div class="table-wrap"><table><tr><th>Contexto</th><th>Como eram vistos?</th><th>Porquê?</th></tr>${['Egito','Grécia','China','Brasil','EUA','Portugal emigrante','Portugal contemporâneo'].map((c,idx)=>`<tr><td>${c}</td><td><textarea id="lab3Vistos${idx}" oninput="atualizarProgresso()"></textarea></td><td><textarea id="lab3Porque${idx}" oninput="atualizarProgresso()"></textarea></td></tr>`).join('')}</table></div><label>Continuidades<textarea id="lab3Continuidades" oninput="atualizarProgresso()"></textarea></label><label>Mudanças<textarea id="lab3Mudancas" oninput="atualizarProgresso()"></textarea></label><label>Padrões históricos<textarea id="lab3Padroes" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn secondary" onclick="go(2)">Voltar</button><button class="btn gold" onclick="go(4)">Construir O Espelho</button></div></div></section></div>`;
+if(d.type==='espelho')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">O Espelho</h2><p class="page-subtitle">Entre o passado e o presente.</p><img class="mirrorVisual" src="assets_migracoes_clean/dossiers/o_espelho_visual.png" alt="O Espelho"><div class="note">Esta página ajuda a transformar os registos dos três laboratórios numa interpretação histórica global.</div></section><section class="right-page"><div class="field-grid"><label>O passado mostra-nos...<textarea id="espelhoPassado" oninput="atualizarProgresso()"></textarea></label><label>O presente leva-nos a pensar...<textarea id="espelhoPresente" oninput="atualizarProgresso()"></textarea></label><label>O que aprendemos?<textarea id="espelhoAprendemos" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn secondary" onclick="go(3)">Voltar</button><button class="btn gold" onclick="go(5)">Síntese final</button></div></div></section></div>`;
+if(d.type==='sintese')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Síntese Final da Investigação</h2><p class="page-subtitle">Usa o teu passaporte para responder de forma fundamentada.</p><div class="badge-big">📝</div><div class="notice">As respostas devem mobilizar evidências dos diferentes laboratórios e evitar generalizações.</div></section><section class="right-page"><div class="field-grid"><label>Questão orientadora 1 — Que representações dos migrantes são construídas em diferentes sociedades históricas?<textarea id="q1" oninput="atualizarProgresso()"></textarea></label><label>Questão orientadora 2 — Como se explicam as atitudes das sociedades de acolhimento face aos migrantes?<textarea id="q2" oninput="atualizarProgresso()"></textarea></label><label>Questão orientadora 3 — Em que medida se repetem as representações dos migrantes em diferentes contextos históricos?<textarea id="q3" oninput="atualizarProgresso()"></textarea></label><label>Problemática — Porque é que sociedades que sempre dependeram das migrações continuam a representar determinados grupos como “outros” ou ameaçadores?<textarea id="respostaFinal" style="min-height:170px" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn secondary" onclick="go(4)">Voltar</button><button class="btn gold" onclick="go(6)">Autoavaliação</button></div></div></section></div>`;
+if(d.type==='auto')return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Autoavaliação</h2><p class="page-subtitle">Antes de entregar, verifica o teu percurso.</p><div class="badge-big">📊</div><div class="note">Esta autoavaliação ajuda-te a regular a reflexão crítica final.</div></section><section class="right-page"><div class="field-grid"><h3>No final desta investigação considero que fui capaz de...</h3><div class="checklist">${['Utilizar evidências históricas.','Comparar diferentes contextos.','Identificar continuidades.','Identificar mudanças.','Construir interpretações fundamentadas.','Responder à Problemática da sequência didática.'].map((t,idx)=>`<label class="checkItem"><input type="checkbox" id="auto${idx}" onchange="atualizarProgresso()"> ${t}</label>`).join('')}</div><label>O principal aspeto que preciso de melhorar é...<textarea id="autoMelhorar" oninput="atualizarProgresso()"></textarea></label><div class="nav-actions"><button class="btn secondary" onclick="go(5)">Voltar</button><button class="btn gold" onclick="go(7)">Relatório final</button></div></div></section></div>`;
+return `<div class="page-screen" id="screen${i}"><section class="left-page"><h2 class="page-title">Relatório Final do Historiador</h2><p class="page-subtitle">Guarda ou envia o teu trabalho.</p><div class="badge-big">📄</div><div id="resultado" class="result"><strong id="nivel"></strong><p id="mensagem"></p><div class="progress"><span id="barraResultado"></span></div></div></section><section class="right-page"><div class="nav-actions"><button class="btn gold" onclick="verificarEntrega()">Verificar passaporte</button><button class="btn secondary" onclick="guardarPassaporte()">Guardar progresso neste PC</button><button class="btn secondary" onclick="exportarPassaporte()">Exportar passaporte</button><button class="btn secondary" onclick="document.getElementById('ficheiroImportar').click()">Importar passaporte</button><input class="file-input" id="ficheiroImportar" type="file" accept=".json,.passport" onchange="importarPassaporte(event)"><button class="btn secondary" onclick="guardarRelatorio()">Descarregar relatório final</button><button class="btn secondary" onclick="enviarEmail()">Enviar por email</button><button class="btn secondary" onclick="window.print()">Guardar em PDF</button><span class="save-status" id="saveStatus">Progresso guardado automaticamente neste navegador.</span></div><label>Email do professor/a<input id="emailProfessor2" type="email"></label><div class="warning">Antes de enviar, confirma se a reflexão final responde diretamente à Problemática e se utilizaste evidências dos três laboratórios.</div></section></div>`;
 }
-
-function montar(){
-  const tabs = document.getElementById('tabs');
-  const pages = document.getElementById('pages');
-  destinos.forEach((d,i)=>{
-    tabs.insertAdjacentHTML('beforeend',`<button class="tab" id="tab${i}" onclick="go(${i})">${d.icon} ${d.tab}</button>`);
-    let content='';
-    if(d.type==='intro'){
-      content = `
-      <div class="page-screen" id="screen${i}">
-        <section class="left-page">
-          <h2 class="page-title">Antes da viagem</h2>
-          <p class="page-subtitle">Preenche a tua identificação e as ideias iniciais.</p>
-          <div class="stamp">PASSAPORTE<br>ABERTO</div>
-          <div class="note"><strong>Situação-problema:</strong> “O bárbaro é, antes de mais, o homem que acredita na barbárie.”<br><em>Claude Lévi-Strauss (1952)</em><br><br>Porque é que sociedades que sempre dependeram das migrações continuam a olhar para alguns grupos como diferentes ou ameaçadores?</div>
-        </section>
-        <section class="right-page">
-          <div class="field-grid">
-            <label>Nome<input id="nome" oninput="atualizarProgresso()"></label>
-            <label>Turma<input id="turma" oninput="atualizarProgresso()"></label>
-            <label>Email do professor/a<input id="emailProfessor" type="email"></label>
-            <label>Data<input id="dataEntrega" type="date"></label>
-            <label>3 palavras que associas a “migrante”<input id="previasPalavras" oninput="atualizarProgresso()"></label>
-            <label>A migração é um fenómeno recente?
-              <select id="previasRecente" onchange="atualizarProgresso()"><option value="">Seleciona</option><option>Sim</option><option>Não</option><option>Não sei</option></select>
-            </label>
-            <label>Porque razão as pessoas migram?<textarea id="previasRazoes" oninput="atualizarProgresso()"></textarea></label>
-            <label>Como achas que os migrantes costumam ser vistos?<textarea id="previasRepresentacoes" oninput="atualizarProgresso()"></textarea></label>
-            <div class="nav-actions"><button class="btn gold" onclick="go(1)">Começar viagem</button></div>
-          </div>
-        </section>
-      </div>`;
-    } else if(d.type==='final'){
-      content = `
-      <div class="page-screen" id="screen${i}">
-        <section class="left-page">
-          <h2 class="page-title">Questões orientadoras finais</h2>
-          <p class="page-subtitle">Esta página só fica disponível depois de concluires todos os destinos.</p>
-          <div class="badge-big">❓</div>
-          <div id="finalLock" class="lock-warning">Ainda tens destinos por concluir.</div>
-          <div class="note"><strong>Agora usa o teu próprio passaporte</strong> para construir respostas mais completas.</div>
-        </section>
-        <section class="right-page">
-          <div class="field-grid">
-            <label>1. Que representações dos migrantes foram construídas nos diferentes contextos históricos estudados?
-              <textarea id="q1" class="final" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>2. Como se explicam as atitudes das sociedades de acolhimento face aos migrantes?
-              <textarea id="q2" class="final" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>3. Em que medida se repetem as representações dos migrantes em diferentes contextos históricos?
-              <textarea id="q3" class="final" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>Problematização final — “O bárbaro é, antes de mais, o homem que acredita na barbárie.” Porque é que sociedades que sempre dependeram das migrações continuam a olhar para alguns grupos como diferentes ou ameaçadores?
-              <div class="prompt">Fundamenta a tua resposta com base nos casos de estudo analisados.</div>
-              <textarea id="respostaFinal" class="final" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <div class="nav-actions"><button class="btn gold" onclick="go(8)">Avançar para envio</button></div>
-          </div>
-        </section>
-      </div>`;
-    } else if(d.type==='send'){
-      content = `
-      <div class="page-screen" id="screen${i}">
-        <section class="left-page">
-          <h2 class="page-title">Última página</h2>
-          <p class="page-subtitle">Verifica e envia o teu relatório ao professor.</p>
-          <div class="badge-big">✉️</div>
-          <div class="note">A nota final é atribuída pelo professor. Esta verificação só confirma se o relatório está completo.</div>
-          <div id="resultado" class="result"><strong id="nivel"></strong><p id="mensagem"></p><div class="progress"><span id="barraResultado"></span></div></div>
-        </section>
-        <section class="right-page">
-          <div class="nav-actions">
-            <button class="btn gold" onclick="verificarEntrega()">Verificar relatório</button>
-            <button class="btn secondary" onclick="guardarPassaporte()">Guardar progresso neste PC</button>
-            <button class="btn secondary" onclick="exportarPassaporte()">Exportar passaporte preenchido</button>
-            <button class="btn secondary" onclick="document.getElementById('ficheiroImportar').click()">Importar passaporte</button>
-            <input class="file-input" id="ficheiroImportar" type="file" accept=".json,.passport" onchange="importarPassaporte(event)">
-            <button class="btn secondary" onclick="guardarRelatorio()">Descarregar relatório final</button>
-            <button class="btn secondary" onclick="enviarEmail()">Enviar por email</button>
-            <button class="btn secondary" onclick="window.print()">Guardar em PDF</button>
-            <button class="btn secondary" onclick="toggleProfessor()">Área do professor</button>
-            <span class="save-status" id="saveStatus">Progresso guardado automaticamente neste navegador.</span>
-          </div>
-          <div class="warning">Antes de enviar, confirma se preencheste todos os destinos e as questões finais.</div>
-        </section>
-      </div>`;
-    } else {
-      content = `
-      <div class="page-screen" id="screen${i}">
-        <section class="left-page">
-          <h2 class="page-title">${d.title}</h2>
-          <p class="page-subtitle">${d.missao}</p>
-          <div class="badge-big">${d.icon}</div>
-          <div class="stamp" id="stamp${i}">DESTINO<br>POR CONCLUIR</div>
-          <div class="note">Completa esta página para receber o carimbo e desbloquear o destino seguinte.</div>
-        </section>
-        <section class="right-page">
-          <div class="field-grid destino" data-index="${i}" data-country="${d.context}">
-            <label>1. O que te permite concluir esta(s) fonte(s)?
-              <div class="prompt">${d.f1}</div>
-              <textarea class="fonte" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>2. Que imagem ou representação é construída?
-              <div class="prompt">${d.f2}</div>
-              <textarea class="representacao" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>3. O que poderá explicar essa forma de olhar os migrantes?
-              <div class="prompt">${d.f3}</div>
-              <textarea class="explicacao" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <label>4. Que conceito histórico melhor se relaciona com este caso?
-              <div class="prompt">Justifica a tua escolha com base nas fontes e no contexto estudado.</div>
-              <input class="conceito" oninput="atualizarProgresso()">
-            </label>
-            <label>5. Que ligação consegues estabelecer entre este caso e outros já estudados?
-              <div class="prompt">${d.f5}</div>
-              <textarea class="duvida" oninput="atualizarProgresso()"></textarea>
-            </label>
-            <div class="nav-actions">
-              <button class="btn secondary" onclick="go(${Math.max(0,i-1)})">Voltar</button>
-              <button class="btn gold" onclick="go(${i+1})">Próximo separador</button>
-            </div>
-          </div>
-        </section>
-      </div>`;
-    }
-    pages.insertAdjacentHTML('beforeend',content);
-  });
-}
-
+function montar(){const nav=document.getElementById('tabs'),pages=document.getElementById('pages');tabs.forEach((d,i)=>{nav.insertAdjacentHTML('beforeend',`<button class="tab" id="tab${i}" onclick="go(${i})">${d.icon} ${d.tab}</button>`);pages.insertAdjacentHTML('beforeend',pageHTML(d,i));});}
+function abrirPassaporte(){document.getElementById('cover').style.display='none';document.getElementById('app').classList.add('show');go(0)}
 function contarPalavras(txt){return (txt.trim().match(/\S+/g)||[]).length}
-function destinoCompletoByIndex(i){
-  const el=document.querySelector(`.destino[data-index="${i}"]`);
-  if(!el) return false;
-  return contarPalavras(el.querySelector('.fonte').value)>=6 &&
-         contarPalavras(el.querySelector('.representacao').value)>=6 &&
-         contarPalavras(el.querySelector('.explicacao').value)>=8 &&
-         contarPalavras(el.querySelector('.conceito').value)>=1;
-}
-function finalUnlocked(){ return true; }
-function tabUnlocked(i){ return true; }
-function atualizarProgresso(){
-  let completos=0;
-  for(let i=1;i<=6;i++){
-    const done=destinoCompletoByIndex(i);
-    if(done) completos++;
-    const stamp=document.getElementById('stamp'+i);
-    if(stamp){stamp.classList.toggle('done',done); stamp.innerHTML= done ? 'DESTINO<br>CARIMBADO' : 'DESTINO<br>POR CONCLUIR';}
-  }
-  document.getElementById('contadorDestinos').textContent = completos + '/6 destinos concluídos';
-  document.getElementById('barraTopo').style.width = Math.round((completos/6)*100)+'%';
-
-  destinos.forEach((_,i)=>{
-    const t=document.getElementById('tab'+i);
-    if(t) t.classList.toggle('locked',!tabUnlocked(i));
-  });
-  const unlocked=finalUnlocked();
-  ['q1','q2','q3','respostaFinal'].forEach(id=>{const el=document.getElementById(id); if(el) el.disabled=!unlocked;});
-  const fl=document.getElementById('finalLock'); if(fl) fl.style.display=unlocked?'none':'block';
-}
-function go(i){
-  atualizarProgresso();
-  
-  current=i;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.page-screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('tab'+i)?.classList.add('active');
-  document.getElementById('screen'+i)?.classList.add('active');
-}
-function verificarEntrega(){
-  const completos=[1,2,3,4,5,6].filter(destinoCompletoByIndex).length;
-  const finais=['q1','q2','q3','respostaFinal'].filter(id=>contarPalavras(document.getElementById(id)?.value||'')>=18).length;
-  const percent=Math.round(((completos/6)*70 + (finais/4)*30));
-  const r=document.getElementById('resultado'); const n=document.getElementById('nivel'); const m=document.getElementById('mensagem');
-  r.classList.add('show'); document.getElementById('barraResultado').style.width=percent+'%';
-  if(completos<6){n.textContent='Ainda não está pronto.'; m.textContent='Completa todos os destinos para desbloquear as questões finais.'}
-  else if(finais<4){n.textContent='Quase pronto.'; m.textContent='Completa as três questões orientadoras e a situação-problema final.'}
-  else{n.textContent='Pronto para enviar.'; m.textContent='O relatório está completo para envio ao professor.'}
-}
-function recolherRelatorio(){
-  const nome=(document.getElementById('nome').value||'aluno').trim();
-  const turma=(document.getElementById('turma').value||'turma').trim();
-  let txt='PASSAPORTE DO MIGRANTE — RELATÓRIO DO ALUNO\n';
-  txt+='Nome: '+nome+'\nTurma: '+turma+'\nData: '+(document.getElementById('dataEntrega').value||'')+'\n\n';
-  txt+='IDEIAS INICIAIS\n';
-  txt+='3 palavras: '+(document.getElementById('previasPalavras').value||'')+'\n';
-  txt+='Migração recente?: '+(document.getElementById('previasRecente').value||'')+'\n';
-  txt+='Razões para migrar: '+(document.getElementById('previasRazoes').value||'')+'\n';
-  txt+='Como migrantes são vistos: '+(document.getElementById('previasRepresentacoes').value||'')+'\n\n';
-  for(let i=1;i<=6;i++){
-    const el=document.querySelector(`.destino[data-index="${i}"]`);
-    txt+='DESTINO: '+el.dataset.country+'\n';
-    txt+='Conclusão a partir das fontes: '+el.querySelector('.fonte').value+'\n';
-    txt+='Imagem ou representação construída: '+el.querySelector('.representacao').value+'\n';
-    txt+='Explicação histórica: '+el.querySelector('.explicacao').value+'\n';
-    txt+='Conceito-chave: '+el.querySelector('.conceito').value+'\n';
-    txt+='Ligação com outros casos: '+el.querySelector('.duvida').value+'\n\n';
-  }
-  txt+='QUESTÕES ORIENTADORAS FINAIS\n';
-  txt+='1. '+(document.getElementById('q1').value||'')+'\n\n';
-  txt+='2. '+(document.getElementById('q2').value||'')+'\n\n';
-  txt+='3. '+(document.getElementById('q3').value||'')+'\n\n';
-  txt+='Situação-problema — Porque é que sociedades que sempre dependeram das migrações continuam a olhar para alguns grupos como diferentes ou ameaçadores?: '+(document.getElementById('respostaFinal').value||'')+'\n\n';
-  txt+='ESPAÇO DO PROFESSOR\n';
-  txt+='Processo: ___ / 8\nProduto final: ___ / 12\nClassificação final: ___ / 20\nFeedback: ________________________________\n';
-  return txt;
-}
-function guardarRelatorio(){
-  verificarEntrega();
-  const nome=(document.getElementById('nome').value||'aluno').trim();
-  const turma=(document.getElementById('turma').value||'turma').trim();
-  const blob=new Blob([recolherRelatorio()],{type:'text/plain;charset=utf-8'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download=nome.replaceAll(' ','_')+'_'+turma.replaceAll(' ','_')+'_passaporte_migrante.txt';
-  a.click(); URL.revokeObjectURL(a.href);
-}
-function enviarEmail(){
-  verificarEntrega();
-  const email=(document.getElementById('emailProfessor').value||'').trim();
-  if(!email){alert('Escreve primeiro o email do professor/a na página inicial.');return;}
-  const nome=(document.getElementById('nome').value||'aluno').trim();
-  const turma=(document.getElementById('turma').value||'turma').trim();
-  location.href='mailto:'+email+'?subject='+encodeURIComponent('Relatório — Passaporte do Migrante — '+nome+' — '+turma)+'&body='+encodeURIComponent(recolherRelatorio());
-}
-function toggleProfessor(){
-  document.getElementById('areaProfessor').classList.toggle('show');
-}
-
-const STORAGE_KEY = 'passaporte_migrante_progresso_v1';
-
-function prepararChavesDeCampos(){
-  document.querySelectorAll('input, textarea, select').forEach((el, idx)=>{
-    if(!el.id && !el.dataset.saveKey){
-      el.dataset.saveKey = 'campo_' + idx;
-    }
-  });
-}
-
-function recolherEstado(){
-  prepararChavesDeCampos();
-  const data = {};
-  document.querySelectorAll('input, textarea, select').forEach((el)=>{
-    const key = el.id || el.dataset.saveKey;
-    if(!key) return;
-    if(el.type === 'checkbox') data[key] = el.checked;
-    else data[key] = el.value;
-  });
-  data.__current = typeof current === 'number' ? current : 0;
-  data.__savedAt = new Date().toISOString();
-  return data;
-}
-
-function aplicarEstado(data){
-  if(!data) return;
-  prepararChavesDeCampos();
-  document.querySelectorAll('input, textarea, select').forEach((el)=>{
-    const key = el.id || el.dataset.saveKey;
-    if(key && data[key] !== undefined){
-      if(el.type === 'checkbox') el.checked = !!data[key];
-      else el.value = data[key];
-    }
-  });
-  atualizarProgresso();
-  if(typeof data.__current === 'number' && typeof tabUnlocked === 'function' && tabUnlocked(data.__current)){
-    go(data.__current);
-  }
-}
-
-function guardarPassaporte(){
-  const data = recolherEstado();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  const s = document.getElementById('saveStatus');
-  if(s) s.textContent = 'Progresso guardado neste PC às ' + new Date().toLocaleTimeString('pt-PT') + '.';
-}
-
-function carregarPassaporte(){
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if(raw){
-    try{
-      aplicarEstado(JSON.parse(raw));
-      const s = document.getElementById('saveStatus');
-      if(s) s.textContent = 'Progresso recuperado automaticamente deste PC.';
-    }catch(e){}
-  }
-}
-
-function exportarPassaporte(){
-  guardarPassaporte();
-  const nome=(document.getElementById('nome')?.value||'aluno').trim();
-  const turma=(document.getElementById('turma')?.value||'turma').trim();
-  const data = recolherEstado();
-  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = nome.replaceAll(' ','_') + '_' + turma.replaceAll(' ','_') + '_passaporte_migrante.passport.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-function importarPassaporte(event){
-  const file = event.target.files && event.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(){
-    try{
-      const data = JSON.parse(reader.result);
-      aplicarEstado(data);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      alert('Passaporte importado com sucesso.');
-    }catch(e){
-      alert('Não foi possível importar este ficheiro.');
-    }
-  };
-  reader.readAsText(file, 'utf-8');
-}
-
-function ativarAutoSave(){
-  document.addEventListener('input', ()=>{
-    clearTimeout(window.__saveTimer);
-    window.__saveTimer = setTimeout(guardarPassaporte, 450);
-  });
-  document.addEventListener('change', ()=>{
-    clearTimeout(window.__saveTimer);
-    window.__saveTimer = setTimeout(guardarPassaporte, 250);
-  });
-}
-
-montar();
-atualizarProgresso();
-carregarPassaporte();
-ativarAutoSave();
-const abrirBtn = document.getElementById('abrirBtn');
-if(abrirBtn){ abrirBtn.addEventListener('click', abrirPassaporte); }
+function filled(id,min=3){const el=document.getElementById(id);return el && contarPalavras(el.value)>=min}
+function etapaCompleta(n){if(n===1)return filled('lab1Representacao',4)&&filled('lab1Evidencia',6)&&filled('lab1Aprendi',5);if(n===2)return filled('lab2Mudou',5)&&filled('lab2Manteve',5)&&filled('lab2Fatores',5);if(n===3)return filled('lab3Continuidades',5)&&filled('lab3Mudancas',5)&&filled('lab3Padroes',5);if(n===4)return filled('espelhoPassado',5)&&filled('espelhoPresente',5)&&filled('espelhoAprendemos',5);if(n===5)return filled('q1',10)&&filled('q2',10)&&filled('q3',10)&&filled('respostaFinal',20);if(n===6)return filled('autoMelhorar',3);return false}
+function atualizarProgresso(){let done=0;for(let n=1;n<=6;n++){if(etapaCompleta(n))done++;}document.getElementById('contadorEtapas').textContent=done+'/6 etapas essenciais concluídas';document.getElementById('barraTopo').style.width=Math.round(done/6*100)+'%';[['stampLab1',1],['stampLab2',2],['stampLab3',3]].forEach(([id,n])=>{const s=document.getElementById(id);if(s){s.classList.toggle('done',etapaCompleta(n));s.innerHTML=etapaCompleta(n)?'INVESTIGAÇÃO<br>CONCLUÍDA':'INVESTIGAÇÃO<br>EM CURSO'}});}
+function go(i){current=i;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.page-screen').forEach(s=>s.classList.remove('active'));document.getElementById('tab'+i)?.classList.add('active');document.getElementById('screen'+i)?.classList.add('active');atualizarProgresso();guardarPassaporte(false)}
+function prepararChaves(){document.querySelectorAll('input,textarea,select').forEach((el,idx)=>{if(!el.id&&!el.dataset.saveKey)el.dataset.saveKey='campo_'+idx})}
+function recolherEstado(){prepararChaves();const data={};document.querySelectorAll('input,textarea,select').forEach(el=>{const key=el.id||el.dataset.saveKey;if(!key)return;data[key]=el.type==='checkbox'?el.checked:el.value});data.__current=current;data.__savedAt=new Date().toISOString();return data}
+function aplicarEstado(data){if(!data)return;prepararChaves();document.querySelectorAll('input,textarea,select').forEach(el=>{const key=el.id||el.dataset.saveKey;if(key&&data[key]!==undefined){if(el.type==='checkbox')el.checked=!!data[key];else el.value=data[key]}});atualizarProgresso();if(typeof data.__current==='number')go(data.__current)}
+function guardarPassaporte(showMsg=true){const data=recolherEstado();localStorage.setItem(STORAGE_KEY,JSON.stringify(data));const s=document.getElementById('saveStatus');if(s&&showMsg)s.textContent='Progresso guardado neste PC às '+new Date().toLocaleTimeString('pt-PT')+'.'}
+function carregarPassaporte(){const raw=localStorage.getItem(STORAGE_KEY);if(raw){try{aplicarEstado(JSON.parse(raw));const s=document.getElementById('saveStatus');if(s)s.textContent='Progresso recuperado automaticamente deste PC.'}catch(e){}}}
+function exportarPassaporte(){guardarPassaporte(false);const nome=(document.getElementById('nome')?.value||'aluno').trim();const turma=(document.getElementById('turma')?.value||'turma').trim();const blob=new Blob([JSON.stringify(recolherEstado(),null,2)],{type:'application/json;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nome.replaceAll(' ','_')+'_'+turma.replaceAll(' ','_')+'_passaporte_historiador.passport.json';a.click();URL.revokeObjectURL(a.href)}
+function importarPassaporte(event){const file=event.target.files&&event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result);aplicarEstado(data);localStorage.setItem(STORAGE_KEY,JSON.stringify(data));alert('Passaporte importado com sucesso.')}catch(e){alert('Não foi possível importar este ficheiro.')}};reader.readAsText(file,'utf-8')}
+function importarDoLaboratorio(){try{const raw=localStorage.getItem('passaporte_migrante_autofill_v7');if(!raw){alert('Não encontrei dados guardados pelo Laboratório Digital neste navegador.');return;}const d=JSON.parse(raw).casos||{};if(d.egipto){document.getElementById('lab1Caso').value='Egito — Hicsos';document.getElementById('lab1Representacao').value=d.egipto.representacao||'';document.getElementById('lab1Evidencia').value=d.egipto.evidencia||'';document.getElementById('lab1Aprendi').value=d.egipto.ligacao||'';}['egipto','grecia','china','brasil','eua'].forEach((k,idx)=>{if(d[k])document.getElementById('lab1Tabela'+idx).value=d[k].representacao||''});if(d.portugal1960){document.getElementById('lab2Fatores').value=d.portugal1960.explicacao||'';document.getElementById('lab2Manteve').value=d.portugal1960.ligacao||'';}if(d.portugalAtual){document.getElementById('lab3Padroes').value=d.portugalAtual.explicacao||'';document.getElementById('lab3Continuidades').value=d.portugalAtual.ligacao||'';}atualizarProgresso();guardarPassaporte();alert('Dados importados. Revê e completa o Passaporte do Historiador.')}catch(e){alert('Não foi possível importar os dados do Laboratório Digital.')}}
+function recolherRelatorio(){const nome=(document.getElementById('nome').value||'aluno').trim(),turma=(document.getElementById('turma').value||'turma').trim();let txt='PASSAPORTE DO HISTORIADOR — RELATÓRIO DO ALUNO\n';txt+='Nome: '+nome+'\nTurma: '+turma+'\nData: '+(document.getElementById('dataEntrega').value||'')+'\n\n';['previasPalavras','previasRazoes','previasRepresentacoes','lab1Caso','lab1Representacao','lab1Evidencia','lab1Aprendi','lab2Mudou','lab2Manteve','lab2Fatores','lab3Continuidades','lab3Mudancas','lab3Padroes','espelhoPassado','espelhoPresente','espelhoAprendemos','q1','q2','q3','respostaFinal','autoMelhorar'].forEach(id=>{const el=document.getElementById(id);if(el)txt+=id+': '+el.value+'\n\n'});return txt}
+function guardarRelatorio(){verificarEntrega();const nome=(document.getElementById('nome').value||'aluno').trim(),turma=(document.getElementById('turma').value||'turma').trim();const blob=new Blob([recolherRelatorio()],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nome.replaceAll(' ','_')+'_'+turma.replaceAll(' ','_')+'_passaporte_historiador.txt';a.click();URL.revokeObjectURL(a.href)}
+function enviarEmail(){verificarEntrega();const email=(document.getElementById('emailProfessor2').value||document.getElementById('emailProfessor').value||'').trim();if(!email){alert('Escreve primeiro o email do professor/a.');return;}const nome=(document.getElementById('nome').value||'aluno').trim(),turma=(document.getElementById('turma').value||'turma').trim();location.href='mailto:'+email+'?subject='+encodeURIComponent('Relatório — Passaporte do Historiador — '+nome+' — '+turma)+'&body='+encodeURIComponent(recolherRelatorio())}
+function verificarEntrega(){const done=[1,2,3,4,5,6].filter(etapaCompleta).length;const percent=Math.round(done/6*100);const r=document.getElementById('resultado'),n=document.getElementById('nivel'),m=document.getElementById('mensagem');if(!r)return;r.classList.add('show');document.getElementById('barraResultado').style.width=percent+'%';if(done<4){n.textContent='Ainda incompleto.';m.textContent='Completa mais etapas para conseguires construir uma reflexão fundamentada.'}else if(done<6){n.textContent='Quase pronto.';m.textContent='Revê a síntese final e a autoavaliação antes de entregar.'}else{n.textContent='Pronto para enviar.';m.textContent='O passaporte reúne os registos essenciais da investigação.'}}
+function ativarAutoSave(){document.addEventListener('input',()=>{clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(()=>guardarPassaporte(false),450)});document.addEventListener('change',()=>{clearTimeout(window.__saveTimer);window.__saveTimer=setTimeout(()=>guardarPassaporte(false),250)})}
+montar();atualizarProgresso();carregarPassaporte();ativarAutoSave();document.getElementById('abrirBtn').addEventListener('click',abrirPassaporte);
 </script>
 </body>
 </html>
